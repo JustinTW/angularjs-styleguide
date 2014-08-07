@@ -31,12 +31,12 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
   1. [Application Structure](#application-structure)
   1. [Modularity](#modularity)
   1. [Angular $ Wrapper Services](#angular-$-wrapper-services)
-  1. [Comments](#comments)
+  1. [註解](#comments)
   1. [JSHint](#js-hint)
   1. [Constants](#constants)
   1. [Angular Docs](#angular-docs)
   1. [Contributing](#contributing)
-  1. [License](#license)
+  1. [授權](#license)
 
 ## Single Responsibility
 
@@ -1002,7 +1002,7 @@ TODO
 
 **[回目錄](#table-of-contents)**
 
-## Comments
+## 註解
 
   - **jsDoc**: If planning to produce documentation, use [`jsDoc`](http://usejsdoc.org/) syntax to document function names, description, params and returns
 
@@ -1154,9 +1154,9 @@ Open an issue first to discuss potential changes/additions. If you have question
     1. Open a Pull Request, reference the issue, and explain the change and why it adds value.
     1. The Pull Request will be evaluated and either merged or declined.
 
-## License
+## 授權
 
-#### (The MIT License)
+#### (The MIT 授權)
 
 Copyright (c) 2014 [John Papa](http://johnpapa.net)
 
