@@ -1,10 +1,10 @@
 # AngularJS 風格指南
 
-*Opinionated AngularJS 風格指南 for teams by [@john_papa](//twitter.com/john_papa)*
+*寫給團隊們一份 主見風格 (opinionated) 的 AngularJS 指南，作者 [@john_papa](//twitter.com/john_papa)*
 
-If you are looking for an opinionated 風格指南 for syntax, conventions, and structuring AngularJS applications, then step right in. The styles contained here are based on on my experience with [AngularJS](//angularjs.org), presentations, [Pluralsight training courses] (http://pluralsight.com/training/Authors/Details/john-papa) and working in teams.
+如果您正為 語法、規範、建構 AngularJS 應用程式 找尋一份風格指南，那就是這裡了。本篇風格規範根據於我在 [AngularJS](//angularjs.org)、簡報、[Pluralsight 訓練課程](http://pluralsight.com/training/Authors/Details/john-papa)以及團隊合作上的經驗。
 
-The purpose of this 風格指南 is to provide guidance on building AngularJS applications by showing the conventions I use and, more importantly, why I choose them.
+本指南目的在於提供建制 AngularJS 應用程式指導，藉此展示我所採用的規範，以及更重要的是我採用該規範的原因。
 
 ## Community Awesomeness and Credit
 Never work in a vacuum. I find that the AngularJS community is an incredible group who are passionate about sharing experiences. As such, a friend  and  AngularJS expert Todd Motto and I have collaborated on many styles and conventions. We agree on most, and some we diverge. I encourage you to check out [Todd's  guidelines](https://github.com/toddmotto/angularjs-styleguide) to get a sense for his approach and how it compares.
@@ -15,7 +15,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
 ## 目錄
 
-  1. [Single Responsibility](#single-responsibility)
+  1. [單一功能原則](#user-content-單一功能原則)
   1. [IIFE](#iife)
   1. [Modules](#modules)
   1. [Controllers](#controllers)
@@ -38,14 +38,14 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
   1. [Contributing](#contributing)
   1. [授權](#user-content-授權)
 
-## Single Responsibility
+## 單一功能原則
 
-  - **Rule of 1**: Define 1 component per file.
+  - **單一功能原則**: 一個檔案僅定義一個元件
 
-  The following example defines the `app` module and its dependencies, defines a controller, and defines a factory all in the same file.
+  以下範例宣告了 `app` 模組及其相依的元件，在一個檔案裡同時宣告 Controller 與 Factory 。
 
     ```javascript
-    /* avoid */
+    /* 差 */
     angular
       .module('app', ['ngRoute'])
       .controller('SomeController' , SomeController)
@@ -56,10 +56,10 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     function someFactory() { }
     ```
 
-  The same components are now separated into their own files.
+  拆分元件，將元件放在專屬的檔案內。
 
     ```javascript
-    /* recommended */
+    /* 佳 */
 
     // app.module.js
     angular
@@ -67,7 +67,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
 
     // someController.js
     angular
@@ -78,7 +78,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
 
     // someFactory.js
     angular
@@ -98,7 +98,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
   *Why?*: When your code is minified and bundled into a single file for deployment to a production server, you could have collisions of variables and many global variables. An IIFE protects you against both of these by providing variable scope for each file.
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     // logger.js
     (function () {
       angular
@@ -127,7 +127,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
   *Why?*: With 1 component per file, there is rarely a need to introduce a variable for the module.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     var app = angular.module('app', [
         'ngAnimate',
         'ngRoute',
@@ -139,7 +139,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
   Instead use the simple getter syntax.
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     angular
       .module('app', [
         'ngAnimate',
@@ -154,7 +154,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
   *Why?* : This produces more readable code and avoids variables collisions or leaks.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     var app = angular.module('app');
     app.controller('SomeController' , SomeController);
 
@@ -162,7 +162,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     angular
       .module('app')
       .controller('SomeController' , SomeController);
@@ -182,7 +182,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
   *Why?*: This produces more readable code, is much easier to debug, and reduces the amount of nested callback code.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     angular
       .module('app')
       .controller('Dashboard', function () { });
@@ -190,7 +190,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
 
     // dashboard.js
     angular
@@ -244,7 +244,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     *Why?*: Helps avoid the temptation of using `$scope` methods inside a controller when it may otherwise be better to avoid them or move them to a factory. Consider using `$scope` in a factory, or if in a controller just when needed. For example when publishing and subscribing events using [`$emit`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$emit), [`$broadcast`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$broadcast), or [`$on`](https://docs.angularjs.org/api/ng/type/$rootScope.Scope#$on) consider moving these uses to a factory and invoke form the controller.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     function Customer ($scope) {
       $scope.name = {};
       $scope.sendMessage = function () { };
@@ -264,7 +264,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     *Why?*: The `this` keyword is contextual and when used within a function inside a controller may change its context. Capturing the context of `this` avoids encountering this problem.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     function Customer () {
       this.name = {};
       this.sendMessage = function () { };
@@ -272,7 +272,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     function Customer () {
       var vm = this;
       vm.name = {};
@@ -294,7 +294,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     *Why?*: Setting anonymous functions inline can be easy, but when those functions are more than 1 line of code they can reduce the readability. Defining the functions below the bindable members (the functions will be hoisted) moves the implementation details down, keeps the bindable members up top, and makes it easier to read.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     function Sessions() {
         var vm = this;
 
@@ -312,7 +312,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     function Sessions() {
         var vm = this;
 
@@ -346,7 +346,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     *Why?*: Removes dependencies and hides implementations details from the controller.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     function Order ($http, $q) {
       var vm = this;
       vm.checkCredit = checkCredit;
@@ -363,7 +363,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     function Order (creditService) {
       var vm = this;
       vm.checkCredit = checkCredit;
@@ -405,7 +405,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
 
     // route-config.js
     angular
@@ -485,7 +485,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
 
     ```javascript
-    /* avoid */
+    /* 差 */
     function dataService () {
       var someValue = '';
       function save () {
@@ -504,7 +504,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     function dataService () {
       var someValue = '';
       var service = {
@@ -535,7 +535,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     *Why?*: It is easy to mash all the directives in one file, but difficult to then break those out so some are shared across apps, some across modules, some just for one module. Also easier to maintain.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     angular
       .module('app.widgets')
 
@@ -552,7 +552,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
 
     /**
      * @desc order directive that is specific to the order module at a company named Acme
@@ -602,7 +602,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* avoid */
+    /* 差 */
     angular
         .module('app.widgets')
         .directive('myCalendarRange', myCalendarRange);
@@ -628,7 +628,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     angular
         .module('app.widgets')
         .directive('myCalendarRange', myCalendarRange);
@@ -658,7 +658,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     - Note: If you need to conditionally cancel the route before you start use the controller, use a route resolve instead.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     function Avengers(dataservice) {
         var vm = this;
         vm.avengers = [];
@@ -672,7 +672,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     function Avengers(dataservice) {
         var vm = this;
         vm.avengers = [];
@@ -696,7 +696,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     *Why?*: A controller may require data before it loads. That data may come from a promise via a custom factory or [$http](https://docs.angularjs.org/api/ng/service/$http). Using a [route resolve](https://docs.angularjs.org/api/ngRoute/provider/$routeProvider) allows the promise to resolve before the controller logic executes, so it might take action based on that data from the promise.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     angular
       .module('app')
       .controller('Avengers', Avengers);
@@ -781,7 +781,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
       *Why?*: Avoid creating inline dependencies as long lists can be difficult to read in the array. Also it can be confusing that the array is a series of strings while the last item is the component's function.
 
     ```javascript
-    /* avoid */
+    /* 差 */
     angular
       .module('app')
       .controller('Dashboard',
@@ -792,7 +792,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     ```
 
     ```javascript
-    /* recommended */
+    /* 佳 */
     angular
       .module('app')
       .controller('Dashboard', Dashboard);
