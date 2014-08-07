@@ -31,12 +31,12 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
   1. [Application Structure](#application-structure)
   1. [Modularity](#modularity)
   1. [Angular $ Wrapper Services](#angular-$-wrapper-services)
-  1. [註解](#comments)
+  1. [註解](#user-content-註解)
   1. [JSHint](#js-hint)
   1. [Constants](#constants)
   1. [Angular Docs](#angular-docs)
   1. [Contributing](#contributing)
-  1. [授權](#license)
+  1. [授權](#user-content-授權)
 
 ## Single Responsibility
 
@@ -88,7 +88,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     function someFactory() { }
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## IIFE
   - **IIFE**: Wrap AngularJS components in an Immediately Invoked Function Expression (IIFE).
@@ -209,7 +209,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     function logger () { }
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Controllers
 
@@ -428,7 +428,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     </div>
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Services
 
@@ -465,7 +465,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     }
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Factories
 
@@ -527,7 +527,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
   - This way bindings are mirrored across the host object, primitive values cannot update alone using the revealing module pattern
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Directives
 - **Limit 1 Per File**: Create one directive per file. Name the file for the directive.
@@ -647,7 +647,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     }
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Resolving Promises for a Controller
 
@@ -746,7 +746,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Manual Dependency Injection
 
@@ -803,7 +803,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     }
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Minification and Annotation
 
@@ -888,7 +888,7 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
 
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Exception Handling
 
@@ -923,12 +923,12 @@ Many of my styles have been from the many pair programming sessions [Ward Bell](
     }
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Naming
 TODO
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Application Structure LIFT Principle
   - **LIFT**: Structure your app such that you can `L`ocate your code quickly, `I`dentify the code at a glance, keep a `F`lattest structure you can, and `T`ry to stay DRY. The structure should follow these 4 basic guidelines.
@@ -978,17 +978,17 @@ TODO
 
       *Why?*: Being DRY is important, but not crucial if it sacrifices the others in LIFT, which is why I call it T-DRY. I don’t want to type session-view.html for a view because, well, it’s obviously a view. If it is not obvious or by convention, then I name it.
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Application Structure
 TODO
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Modularity
 TODO
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Angular $ Wrapper Services
 
@@ -1000,7 +1000,7 @@ TODO
 
     *Why?*: These services are wrapped by Angular and more easily testable and handle AngularJS's digest cycle thus keeping data binding in sync.
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## 註解
 
@@ -1041,7 +1041,7 @@ TODO
     }
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## JS Hint
 
@@ -1115,7 +1115,7 @@ TODO
     }
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## Constants
 
@@ -1137,7 +1137,7 @@ TODO
     })();
     ```
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
 
 ## AngularJS docs
 For anything else, API reference, check the [Angular documentation](//docs.angularjs.org/api).
@@ -1179,4 +1179,4 @@ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-**[回目錄](#table-of-contents)**
+**[回目錄](#user-content-目錄)**
